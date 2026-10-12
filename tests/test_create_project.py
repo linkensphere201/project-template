@@ -30,7 +30,10 @@ class GeneratorTests(unittest.TestCase):
         self.assertIn('Planning gate: Pending', (target / 'tasks/milestones.md').read_text())
         for name in ('.git', 'scripts', 'tests', 'PROJECT.md', 'VERSION'):
             self.assertFalse((target / name).exists())
-        self.assertEqual(json.loads((target / '.template-source.json').read_text())['version'], '1.0.0')
+        self.assertEqual(json.loads((target / '.template-source.json').read_text())['version'],
+                         (TEMPLATE / 'VERSION').read_text().strip())
+        self.assertEqual((target / 'AGENTS.md').read_text(encoding='utf-8'),
+                         (TEMPLATE / 'AGENTS.md').read_text(encoding='utf-8-sig').rstrip() + '\n')
 
     def test_refuses_overwrite(self):
         target = self.generate()

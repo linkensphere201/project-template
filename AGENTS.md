@@ -54,6 +54,22 @@ Before doing substantial work, read files in this order:
 - Add reusable prompts only when they are likely to help again
 - Update docs after meaningful work so the next collaborator can continue quickly
 
+## Numbered Design And Change Points
+
+- Assign a stable, individually referenceable ID to every design point and change point before implementation, including proposals, review findings and problems discovered during testing.
+- Reuse the project's existing hierarchical `M<n>.<s>.<t>` task IDs rather than creating a competing numbering system. If a task contains multiple independently discussable design or change points, give them distinct numbered child entries using the existing optional fourth level.
+- Use these IDs in design discussions, approval requests, implementation summaries, validation evidence and follow-up references; a broad milestone ID alone is insufficient for several distinct points.
+- Never renumber or reuse a published ID. Retain rejected, deferred and superseded points with their status and links to replacements.
+
+## Reuse And Design Change Approval
+
+- Before changing an existing system, inspect its approved design, relevant code and existing components. Prefer extending or reusing them; identify the concrete reuse path in the numbered proposal.
+- Do not silently introduce a parallel mechanism, new abstraction, framework, state model or alternative source of truth. Explain why existing designs/components are insufficient, the proposed alternative, affected interfaces, complexity and validation impact; obtain explicit user approval before implementing it.
+- Approval of a goal or earlier design is not blanket permission to invent a different mechanism later. Update the numbered design decision and its approval record before proceeding with a material design change.
+- During testing, surface newly discovered problems as numbered findings. If solving one requires a new mechanism/abstraction or departs from the approved design, pause the affected implementation, present the evidence and options, and discuss the design with the user before applying the solution. Testing is not an exception to this gate.
+- Narrow implementation corrections that preserve the approved design may proceed under existing authorization, but still need numbered reporting and relevant verification. When unsure whether a fix changes the design, ask first.
+- Continue independent, already-approved work where possible; do not hide unresolved design questions inside a workaround, refactor or test-only helper.
+
 ## Task Management
 
 - Read `tasks/milestones.md` before planning or implementation.

@@ -17,6 +17,8 @@ Complex projects must define the complete known milestone sequence `M1` through 
 - Never renumber or reuse an ID after progress reporting or implementation begins.
 - Keep cancelled or superseded IDs and mark their final state.
 - Reference at least one ID in every active-status, decision, implementation, test, and work-log entry.
+- Every distinct design point, change point and test-discovered finding must have a specific stable ID before implementation; split multiple independently discussable points into numbered child entries.
+- Record approval before introducing a new mechanism or abstraction, or departing from an approved design. Prefer reuse and follow the design-change gate in `AGENTS.md`.
 
 ## Milestones
 
