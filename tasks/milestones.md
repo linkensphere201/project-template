@@ -2,8 +2,8 @@
 
 ## Complexity
 
-- Classification: Simple | Complex
-- Planning gate: Pending | Approved
+- Classification: Pending
+- Planning gate: Pending
 
 Complex projects must define the complete known milestone sequence `M1` through `Mn` and approve milestone-level acceptance targets before implementation begins.
 

@@ -2,14 +2,14 @@
 
 ## In Progress
 
-- [ ] `M1.1.1` Task:
-  Owner:
-  Next step:
+- [ ] `M1.1.1` {{ACTIVE_GOAL}}
+  Owner: {{OWNER}}
+  Next step: Classify complexity and define milestone acceptance criteria.
 
 ## Blocked
 
-- [x] `M1` Initialized milestone and task numbering
+- None
 
 ## Recently Completed
 
-- None
+- Project documentation initialized on {{START_DATE}}; milestone work remains pending.

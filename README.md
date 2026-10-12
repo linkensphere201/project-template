@@ -1,43 +1,64 @@
 ﻿# Project Template
 
-这个目录是单个项目的标准模板，适合执行型项目，也适合探索型项目。
+Reusable documentation and AI-collaboration skeleton. Requires Python 3.10+;
+no third-party packages are needed.
 
-将此目录复制后，重命名为：
+## Usage
 
-`YYYY-MM-DD-project-name`
+```sh
+git clone git@github.com:linkensphere201/project-template.git
+git -C project-template checkout v1.0.0
+python project-template/scripts/create_project.py example-project --output-root ./projects --description "Describe the outcome" --owner "Your team" --no-index
+```
 
-例如：
+Creates `projects/YYYY-MM-DD-example-project/`. Use `--date YYYY-MM-DD` for a
+fixed date. Existing projects are never overwritten or automatically updated.
 
-`2026-04-01-llm-infra`
+## Source Of Truth
 
-## 推荐使用方式
+- `AGENTS.md`: reusable project-level collaboration rules.
+- `PROJECT.md`: rendered as the generated project's README.
+- `context/`, `tasks/`, `prompts/`, `logs/`: project documents.
+- `scripts/create_project.py`: generator; documents are not duplicated in code.
+- `VERSION`: release version; `tests/`: generator regression tests.
 
-如果是执行型项目：
+Supported placeholders: `{{PROJECT_TITLE}}`, `{{PROJECT_DIRECTORY}}`,
+`{{DESCRIPTION}}`, `{{ACTIVE_GOAL}}`, `{{OWNER}}`, `{{START_DATE}}`.
+Unknown placeholders fail before creating files.
 
-- 先明确目标
-- 判断任务是简单任务还是复杂任务
-- 复杂任务先在 `tasks/milestones.md` 定义完整的 `M1` 到 `Mn`
-- 按 `M1.1` 子目标和 `M1.1.1` 可执行任务逐层分解
-- 按任务编号推进并更新状态、决策、测试和工作日志
+Generated projects contain twelve Markdown documents and
+`.template-source.json` recording version, commit and dirty state.
+ZIP exports have a null commit. Git metadata, maintenance scripts, tests and
+this repository README are never copied. Global safety and workspace policies
+remain owned by the host environment.
 
-如果是探索型项目：
+## Pinned Workspace Integration
 
-- 先补背景知识
-- 再整理术语、问题地图和研究笔记
-- 最后再进入方案设计和实施
+```sh
+git submodule add git@github.com:linkensphere201/project-template.git project-template
+git submodule update --init --recursive
+```
 
-## 复制后优先修改
+Clone the parent workspace with `git clone --recurse-submodules <workspace-url>`.
+After pulling the parent, use `git submodule update --init --recursive`.
+Do not use `--remote` for routine initialization: upgrading the pinned version
+is a separate reviewed change.
 
-- `README.md`
-- `AGENTS.md`
-- `context/project-overview.md`
-- `context/research-notes.md`
-- `tasks/active.md`
-- `tasks/milestones.md`
+The create-task skill delegates to this generator. Without `--no-index`,
+existing workspace README and WORKSPACE-STRUCTURE files receive a project entry.
+Use `--no-index` outside that workspace convention. `--project-root` aliases
+`--output-root`; `--template-dir` selects another initialized template checkout.
 
-## 目录说明
+## Validation And Releases
 
-- `context/`：背景知识、架构、术语、研究笔记
-- `tasks/`：里程碑、任务、待办、决策
-- `prompts/`：可复用提示词
-- `logs/`：工作过程记录
+```sh
+python -m unittest discover -s project-template/tests -v
+```
+
+Tests retain isolated temporary directories; no existing project is deleted.
+Tag releases and update VERSION. Review generated documents before upgrading;
+automatic migration of existing project documents is intentionally unsupported.
+
+The initial commit preserves the original twelve-file project-manager snapshot.
+Earlier history remains in that repository. Version 1.0.0 adds standalone
+generation, explicit placeholders and Git-metadata isolation.

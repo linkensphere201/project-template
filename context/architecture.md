@@ -2,7 +2,7 @@
 
 ## Overview
 
-描述项目的整体结构、主要模块和它们之间的关系。
+Describe the system structure, major components and their relationships.
 
 ## Key Components
 
